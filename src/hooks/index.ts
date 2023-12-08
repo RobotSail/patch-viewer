@@ -197,8 +197,8 @@ export function useFieldSelect(fieldNames: FieldName[]) {
 export function useNavigation() {
   const { route } = useRouter();
   const navigation: NavigationItem[] = [
-    { name: "Multi-File Viewer", href: "/multi-file", current: true },
-    { name: "Diff Viewer", href: "/diff-viewer", current: false },
+    { name: "Diff Viewer", href: "/", current: false },
+    { name: "Multi-File Viewer", href: "/multi-file", current: false },
   ];
   console.log("route: ", route);
   return navigation.map((nav) => {
