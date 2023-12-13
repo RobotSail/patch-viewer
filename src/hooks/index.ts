@@ -32,7 +32,7 @@ function getPresentFieldNames(dp: Datapoint): string[] {
 }
 
 // this function parses a fieldname and returns the value of that field
-export function getFieldValue(dp: Datapoint, fieldName: FieldName): string {
+export function getFieldValue(dp: Datapoint, fieldName: string): string {
   const fieldParts = fieldName.split('.');
   let cursor: Datapoint | string = dp;
   for (const part of fieldParts) {

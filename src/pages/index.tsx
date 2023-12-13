@@ -45,12 +45,12 @@ export default function DiffViewerPage() {
           />
         )}
       </div>
-      {datapoints[index] && (
+      {datapoints[index] && selectedLeftField && selectedRightField && (
         <DiffViewer
           leftTitle={selectedLeftField}
           rightTitle={selectedRightField}
-          oldValue={getFieldValue(datapoints[index], selectedLeftField!)}
-          newValue={getFieldValue(datapoints[index], selectedRightField!)}
+          oldValue={getFieldValue(datapoints[index], selectedLeftField)}
+          newValue={getFieldValue(datapoints[index], selectedRightField)}
         />
       )}
     </Layout>
