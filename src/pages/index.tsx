@@ -1,10 +1,10 @@
-import { DatasetController } from "@/components/data-controller";
-import Layout from "@/components/layout";
-import Select from "@/components/ui/select";
-import { useDatapoints, useFieldSelect } from "@/hooks";
-import { FieldName } from "@/types";
-import { useState } from "react";
-import DiffViewer from "react-diff-viewer-continued";
+import { DatasetController } from '@/components/data-controller';
+import Layout from '@/components/layout';
+import Select from '@/components/ui/select';
+import { getFieldValue, useDatapoints, useFieldSelect } from '@/hooks';
+import { FieldName } from '@/types';
+import { useState } from 'react';
+import DiffViewer from 'react-diff-viewer-continued';
 
 export default function DiffViewerPage() {
   const { changeIndex, datapoints, handleFileChange, index, allFieldNames } =
@@ -24,8 +24,8 @@ export default function DiffViewerPage() {
         datasetLength={datapoints.length}
         handleFileChange={handleFileChange}
         index={index}
-        onNextClick={() => changeIndex("increment")}
-        onPreviousClick={() => changeIndex("decrement")}
+        onNextClick={() => changeIndex('increment')}
+        onPreviousClick={() => changeIndex('decrement')}
       />
       <div>
         {selectedLeftField && (
@@ -49,8 +49,8 @@ export default function DiffViewerPage() {
         <DiffViewer
           leftTitle={selectedLeftField}
           rightTitle={selectedRightField}
-          oldValue={datapoints[index][selectedLeftField!] ?? ""}
-          newValue={datapoints[index][selectedRightField!] ?? ""}
+          oldValue={getFieldValue(datapoints[index], selectedLeftField!)}
+          newValue={getFieldValue(datapoints[index], selectedRightField!)}
         />
       )}
     </Layout>

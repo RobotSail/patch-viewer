@@ -1,12 +1,12 @@
-import { DatasetController } from "@/components/data-controller";
-import Layout from "@/components/layout";
-import { useDatapoints } from "@/hooks";
-import { Datapoint, FieldName } from "@/types";
-import { Inter } from "next/font/google";
-import { ChangeEvent, useCallback, useEffect, useMemo, useState } from "react";
-import Markdown from "react-markdown";
+import { DatasetController } from '@/components/data-controller';
+import Layout from '@/components/layout';
+import { getFieldValue, useDatapoints } from '@/hooks';
+import { Datapoint, FieldName } from '@/types';
+import { Inter } from 'next/font/google';
+import { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
+import Markdown from 'react-markdown';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 type FileDiffViewerProps = {
   data: string;
@@ -36,8 +36,8 @@ function FileDiffViewer({
       <div
         className="border-gray-200 overflow-y-scroll bg-gray-50 border p-4"
         style={{
-          width: "726px",
-          height: "1024px",
+          width: '726px',
+          height: '1024px',
         }}
       >
         <Markdown>
@@ -51,7 +51,7 @@ ${data}
 }
 
 type FileViewerContainerProps = {
-  datapoint: Partial<Datapoint>;
+  datapoint: Datapoint;
   selectedFields: FieldName[];
   removeField: (fieldName: FieldName) => void;
   availableFields: FieldName[];
@@ -73,7 +73,7 @@ function FileViewerContainer({
         return (
           // <div key={`field-viewer-${i}`} className="flex-shrink-0">
           <FileDiffViewer
-            data={datapoint[sf]!}
+            data={getFieldValue(datapoint, sf)}
             fieldName={sf}
             onCloseClick={() => removeField(sf)}
             key={`field-viewer-${i}`}
@@ -125,8 +125,8 @@ export default function Home() {
           datasetLength={datapoints.length}
           index={index}
           handleFileChange={handleFileChange}
-          onNextClick={() => changeIndex("increment")}
-          onPreviousClick={() => changeIndex("decrement")}
+          onNextClick={() => changeIndex('increment')}
+          onPreviousClick={() => changeIndex('decrement')}
         />
         <FileViewerContainer
           datapoint={datapoints[index]}
